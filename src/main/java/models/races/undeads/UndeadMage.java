@@ -10,7 +10,8 @@ public class UndeadMage extends Unit {
     public UndeadMage() {
         actions = List.of(Action.BUFF, Action.SPELL_DAMAGE);
         magicDamage = 5.0f;
-        buff = Unit::setPrivileged;
+        buff = Unit::getBuff;
+        debuff = Unit::setDeBuff;
     }
 
     @Override

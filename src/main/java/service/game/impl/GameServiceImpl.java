@@ -53,6 +53,7 @@ public class GameServiceImpl implements GameService {
         Logger.doLog(unit.getType() + " START TURN");
         Action action = unit.getRandomAction();
         doAction(unit, action, Action.BUFF.equals(action) ? allies : enemies);
+        doAction(unit, action, Action.DEBUFF.equals(action) ? enemies : allies);
     }
 
     private boolean isGameOver(List<Unit> firstParty, List<Unit> secondParty) {
@@ -91,15 +92,10 @@ public class GameServiceImpl implements GameService {
             this.factory = factory;
         }
 
-        public UnitFactory<Unit> getFactory() {
-            return factory;
-        }
-
         private static UnitFactory<Unit> getRandom() {
             Factory[] factories = values();
             int randIndex = new Random().nextInt(values().length);
             return factories[randIndex].factory;
         }
-
     }
 }

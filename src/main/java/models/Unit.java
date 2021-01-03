@@ -11,11 +11,12 @@ public abstract class Unit {
     protected float rangeDamage;
     protected float magicDamage;
     protected Consumer<Unit> buff;
+    protected Consumer<Unit> debuff;
     protected List<Action> actions;
 
     private float multiplierRangeDamage = 1.0f;  // Мультипликатор дальней атаки
     private float multiplierMeleeDamage = 1.0f;  // Мультипликатор ближней атаки
-    private float multiplierSpellDamage = 1.0f;  // Мультипликатор ближней атаки
+    private float multiplierSpellDamage = 1.0f;  // Мультипликатор магической атаки
 
     public abstract String getType();
 
@@ -91,6 +92,14 @@ public abstract class Unit {
         this.buff = buff;
     }
 
+    public Consumer<Unit> getDebuff() {
+        return debuff;
+    }
+
+    public void setDebuff(Consumer<Unit> debuff) {
+        this.debuff = debuff;
+    }
+
     public Action getRandomAction() {
         return actions.get(new Random().nextInt(actions.size()));
     }
@@ -99,5 +108,11 @@ public abstract class Unit {
         this.setMultiplierMeleeDamage(1.5f);
         this.setMultiplierRangeDamage(1.5f);
         this.setMultiplierSpellDamage(1.5f);
+    }
+
+    public void setDeBuff() {
+        this.setMultiplierMeleeDamage(0.5f);
+        this.setMultiplierRangeDamage(0.5f);
+        this.setMultiplierMeleeDamage(0.5f);
     }
 }

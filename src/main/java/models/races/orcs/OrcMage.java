@@ -9,7 +9,8 @@ public class OrcMage extends Unit {
 
     public OrcMage() {
         actions = List.of(Action.BUFF, Action.SPELL_DAMAGE);
-        buff = Unit::setPrivileged;
+        buff = Unit::getBuff;
+        debuff = Unit::setDeBuff;
     }
 
     @Override
